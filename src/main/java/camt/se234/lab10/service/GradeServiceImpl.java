@@ -20,6 +20,21 @@ public class GradeServiceImpl implements GradeService {
             g="F";
         }
         return g;
-
+    }
+    public String getGrade(double midtermScore, double finalScore) {
+        double totalScore = (midtermScore / 2) + (finalScore / 2);
+        String g = "";
+        if (totalScore >= 80) {
+            g = "A";
+        } else if (totalScore >= 75 && totalScore < 80) {
+            g = "B";
+        } else if (totalScore >= 60 && totalScore < 75) {
+            g = "C";
+        } else if (totalScore >= 33 && totalScore < 60) {
+            g = "D";
+        } else if (totalScore < 33) {
+            g = "F";
+        }
+        return g;
     }
 }
