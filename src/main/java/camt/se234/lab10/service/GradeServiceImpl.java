@@ -7,34 +7,30 @@ import org.springframework.stereotype.Service;
 public class GradeServiceImpl implements GradeService {
     @Override
     public String getGrade(double score) {
-        String g ="";
-        if (score >= 80) {
-            g= "A";
-        } else if (score >= 75 && score < 80) {
-            g= "B";
-        } else if (score >= 60 && score < 75) {
-            g= "C";
-        } else if (score >= 33 && score < 60) {
-            g= "D";
-        }else if (score < 33) {
-            g="F";
-        }
-        return g;
-    }
-    public String getGrade(double midtermScore, double finalScore) {
-        double totalScore = (midtermScore / 2) + (finalScore / 2);
         String g = "";
-        if (totalScore >= 80) {
+        if (score >= 80) {
             g = "A";
-        } else if (totalScore >= 75 && totalScore < 80) {
+        } else if (score >= 75 && score < 80) {
             g = "B";
-        } else if (totalScore >= 60 && totalScore < 75) {
+        } else if (score >= 60 && score < 75) {
             g = "C";
-        } else if (totalScore >= 33 && totalScore < 60) {
+        } else if (score >= 33 && score < 60) {
             g = "D";
-        } else if (totalScore < 33) {
+        } else if (score < 33) {
             g = "F";
         }
         return g;
     }
+
+    @Override
+    public String getGrade(double midtermScore, double finalScore) {
+        double score = midtermScore + finalScore;
+        if (score >= 80 && score <= 100) return "A";
+        else if (score >= 75 && score < 80) return "B";
+        else if (score >= 60 && score < 75) return "C";
+        else if (score >= 33 && score < 60) return "D";
+        else if (score < 33 && score >= 0) return "F";
+        else return "Invalid input";
+    }
 }
+

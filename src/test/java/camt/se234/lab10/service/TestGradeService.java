@@ -24,15 +24,23 @@ public class TestGradeService {
         assertThat(gradeService.getGrade(33), is("D"));
         assertThat(gradeService.getGrade(32), is("F"));
         assertThat(gradeService.getGrade(0), is("F"));
+        assertThat(gradeService.getGrade(200), is("A"));
+        assertThat(gradeService.getGrade(50,50),is("A"));
+        assertThat(gradeService.getGrade(40,40),is("A"));
+        assertThat(gradeService.getGrade(40,38.9),is("B"));
+        assertThat(gradeService.getGrade(30,30),is("C"));
+        assertThat(gradeService.getGrade(20,13),is("D"));
+        assertThat(gradeService.getGrade(0,15),is("F"));
+        assertThat(gradeService.getGrade(30,100),is("Invalid input"));
 
     }
 
     @Test
     @Parameters(method = "paramsForTestGetGradeParams")
-    @TestCaseName("Test getGrade Params [{index}] : input is {0}, expect \"1{1}\"")
-    public void testGetGradeparams(double midterScore, double finalScore , String expectedGrade) {
+    @TestCaseName("Test getGrade Params [{index}] : input is {0},expect \"{1}\"")
+    public void testGetGradeParams(double score,String expectedGrade) {
         GradeServiceImpl gradeService = new GradeServiceImpl();
-        assertThat(gradeService.getGrade(midterScore,finalScore), is(expectedGrade));
+        assertThat(gradeService.getGrade(score),is(expectedGrade));
     }
 
     public Object paramsForTestGetGradeParams() {
